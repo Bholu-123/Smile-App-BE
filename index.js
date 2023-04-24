@@ -8,7 +8,7 @@ import userRoute from "./routes/userRoute.js";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -23,7 +23,7 @@ mongoose
   })
   .then(() =>
     app.listen(PORT, () =>
-      console.log(`Server Running on Port: https://localhost:${PORT}`)
+      console.log(`Server Running on Port: http://localhost:${PORT}`)
     )
   )
   .catch((error) => console.log(`${error} did not connect`));
