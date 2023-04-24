@@ -22,7 +22,7 @@ export const authUser = asyncHandler(async (req, res) => {
   } else {
     res.status(401).json({
       success: false,
-      msg: "Unauthorized user",
+      message: "Unauthorized user",
     });
   }
 });
@@ -64,7 +64,7 @@ export const registerUser = asyncHandler(async (req, res, next) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: "Something went wrong while creating user",
+      message: "Not able to create user",
     });
     console.log(err);
   }
