@@ -1,20 +1,27 @@
 import express from "express";
-
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import userRoute from "./routes/userRoute.js";
+import adminRoute from "./routes/adminRoute.js";
+import ngoRoute from "./routes/ngoRoute.js";
+import categoryRoute from "./routes/categoryRoute.js";
+import formData from "express-form-data";
 
 dotenv.config();
 
 const app = express();
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(formData.parse());
 
 app.use("/api/users", userRoute);
+app.use("/api/ngo", ngoRoute);
+app.use("/api/category", categoryRoute);
+app.use("/api/admin", adminRoute);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 
 mongoose
   .connect(process.env.MONGO_URI, {
