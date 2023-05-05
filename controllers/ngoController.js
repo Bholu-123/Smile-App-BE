@@ -7,20 +7,27 @@ import Admin from "../models/adminModel.js";
 // @desc    Add Ngos
 // @access  Private
 export const addNgos = asyncHandler(async (req, res) => {
-  const { title, content, categoryId, userId } = req.body;
+  const { title, content, categoryId, userId, imageUrl } = req.body;
 
   const category = await Category.findById(categoryId);
   const user = await Admin.findById(userId);
-
   if (category && user) {
-    let urlImage = await imageToBase64(req.files.imageUrl.path);
+    let urlImage = "";
+    if (imageUrl) {
+      urlImage = imageUrl;
+    } else {
+      urlImage = await imageToBase64(req.files.imageUrl.path);
+    }
 
     const ngos = await Ngo.create({
       title,
       content,
       category: category._id,
       addedBy: user._id,
-      urlToImage: `data:${req.files.imageUrl.type};base64,` + urlImage,
+      urlToImage:
+        imageUrl !== ""
+          ? imageUrl
+          : `data:${req.files.imageUrl.type};base64,` + urlImage,
       addedAt: Date.now(),
     });
 
