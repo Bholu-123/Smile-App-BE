@@ -14,7 +14,7 @@ export const addNgos = asyncHandler(async (req, res) => {
   if (category && user) {
     let urlImage = "";
     if (imageUrl) {
-      urlImage = await imageToBase64(imageUrl);
+      urlImage = imageUrl;
     } else {
       urlImage = await imageToBase64(req.files.imageUrl.path);
     }
@@ -24,7 +24,10 @@ export const addNgos = asyncHandler(async (req, res) => {
       content,
       category: category._id,
       addedBy: user._id,
-      urlToImage: `data:image/jpeg;base64,${urlImage}`,
+      urlToImage:
+        imageUrl !== ""
+          ? imageUrl
+          : `data:${req.files.imageUrl.type};base64,` + urlImage,
       addedAt: Date.now(),
     });
 
