@@ -24,10 +24,10 @@ export const addNgos = asyncHandler(async (req, res) => {
       content,
       category: category._id,
       addedBy: user._id,
-      urlToImage:
-        imageUrl !== ""
-          ? imageUrl
-          : `data:${req.files.imageUrl.type};base64,` + urlImage,
+      urlToImage: imageUrl
+        ? imageUrl
+        : `data:${req.files.imageUrl.type};base64,` + urlImage,
+
       addedAt: Date.now(),
     });
 
