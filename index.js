@@ -6,6 +6,8 @@ import userRoute from "./routes/userRoute.js";
 import adminRoute from "./routes/adminRoute.js";
 import ngoRoute from "./routes/ngoRoute.js";
 import categoryRoute from "./routes/categoryRoute.js";
+import donationRoute from "./routes/donationItemRoute.js";
+import notificationRoute from "./routes/notificationRoute.js";
 import formData from "express-form-data";
 
 dotenv.config();
@@ -20,6 +22,8 @@ app.use("/api/users", userRoute);
 app.use("/api/ngo", ngoRoute);
 app.use("/api/category", categoryRoute);
 app.use("/api/admin", adminRoute);
+app.use("/api/donation", donationRoute);
+app.use("/api/notification", notificationRoute);
 
 const PORT = process.env.PORT || 8000;
 

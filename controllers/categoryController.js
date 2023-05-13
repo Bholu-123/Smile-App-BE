@@ -69,26 +69,9 @@ export const editCategory = asyncHandler(async (req, res) => {
     .json({ success: true, data: category, msg: "Successfully updated" });
 });
 
-export const imageUpload = asyncHandler(async (req, res) => {
-  // CHANGE: The path to your service account
-  console.log(req.files);
-
-  imageToBase64(req.files.images.path) // Path to the image
-    .then((response) => {
-      console.log(response); // "cGF0aC90by9maWxlLmpwZw=="
-      res.json({
-        path: response,
-      });
-    })
-    .catch((error) => {
-      console.log(error); // Logs an error if there was one
-    });
-});
-
 export default {
   addCategory,
   deleteCategory,
   getAllCategories,
   editCategory,
-  imageUpload,
 };
