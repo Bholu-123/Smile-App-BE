@@ -7,6 +7,7 @@ import adminRoute from "./routes/adminRoute.js";
 import ngoRoute from "./routes/ngoRoute.js";
 import categoryRoute from "./routes/categoryRoute.js";
 import formData from "express-form-data";
+import emailRoute from "./routes/emailRoute.js";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use("/api/users", userRoute);
 app.use("/api/ngo", ngoRoute);
 app.use("/api/category", categoryRoute);
 app.use("/api/admin", adminRoute);
+app.use("/api/mail", emailRoute)
 
 const PORT = process.env.PORT || 8000;
 
